@@ -7,6 +7,8 @@ import {
   Patch,
   Post,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 
 import { TasksService } from './tasks.service';
@@ -34,7 +36,9 @@ export class TasksController {
     return this.tasksService.getById(id);
   }
 
+  // Validate task title and description not empty
   @Post()
+  @UsePipes(ValidationPipe)
   create(@Body() createTaskDto: CreateTaskDto): Task {
     return this.tasksService.create(createTaskDto);
   }
