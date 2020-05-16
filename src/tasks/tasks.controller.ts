@@ -37,12 +37,11 @@ export class TasksController {
     return this.tasksService.getById(id);
   }
 
-  // // Validate task title and description not empty
-  // @Post()
-  // @UsePipes(ValidationPipe)
-  // create(@Body() createTaskDto: CreateTaskDto): Task {
-  //   return this.tasksService.create(createTaskDto);
-  // }
+  @Post()
+  @UsePipes(ValidationPipe)
+  create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+    return this.tasksService.create(createTaskDto);
+  }
 
   // @Delete('/:id')
   // delete(@Param('id') id: string): void {
