@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { ConflictException, InternalServerErrorException } from '@nestjs/common';
 import { Repository, EntityRepository } from 'typeorm';
 
