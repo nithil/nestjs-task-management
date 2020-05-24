@@ -95,4 +95,24 @@ describe('TasksService', () => {
       expect(tasksService.deleteById(1, mockUser)).rejects.toThrow(NotFoundException);
     });
   });
+
+  describe('updateStatus', () => {
+    it('updates a task status', async () => {
+      const save = jest.fn().mockResolvedValue(true);
+
+      tasksService.getById = jest.fn().mockResolvedValue({
+        status: TaskStatus.OPEN,
+        save,
+      });
+
+      expect(tasksService.getById).not.toHaveBeenCalled();
+      expect(save).not.toHaveBeenCalled();
+
+      const result = await tasksService.updateStatus(1, TaskStatus.DONE, mockUser);
+
+      expect(tasksService.getById).toHaveBeenCalled();
+      expect(save).toHaveBeenCalled();
+      expect(result.status).toEqual(TaskStatus.DONE);
+    });
+  });
 });
