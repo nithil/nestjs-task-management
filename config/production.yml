@@ -1,0 +1,2 @@
+db:
+  synchromize: true # change this to false after 1st deployment
